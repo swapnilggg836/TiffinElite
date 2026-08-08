@@ -5,13 +5,24 @@ $username = getenv('DB_USER') ?: "root";
 $password = getenv('DB_PASS') !== false ? getenv('DB_PASS') : "";
 $db       = getenv('DB_NAME') ?: "yum";
 
-$conn = new mysqli($host, $username, $password, $db, (int)$port);
+// Initialize mysqli
+$conn = mysqli_init();
+if (getenv('DB_HOST')) {
+    // Enable SSL for cloud MySQL providers like Aiven
+    mysqli_ssl_set($conn, NULL, NULL, NULL, NULL, NULL);
+    @$conn->real_connect($host, $username, $password, $db, (int)$port, NULL, MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT);
+} else {
+    @$conn->real_connect($host, $username, $password, $db, (int)$port);
+}
 
 try {
-    // Create a PDO connection
-    $pdo = new PDO("mysql:host=$host;port=$port;dbname=$db", $username, $password);
-    // Set PDO error mode to exception
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo_options = [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+    ];
+    if (getenv('DB_HOST')) {
+        $pdo_options[PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = false;
+    }
+    $pdo = new PDO("mysql:host=$host;port=$port;dbname=$db", $username, $password, $pdo_options);
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }

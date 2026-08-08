@@ -1,11 +1,10 @@
 <?php
-$host = "localhost";
-$server = "localhost";
-$username = "root";
-$password = "";
-$db = "yum";
+$host     = getenv('DB_HOST') ?: "localhost";
+$username = getenv('DB_USER') ?: "root";
+$password = getenv('DB_PASS') !== false ? getenv('DB_PASS') : "";
+$db       = getenv('DB_NAME') ?: "yum";
 
-$conn = new mysqli($server, $username, $password, $db);
+$conn = new mysqli($host, $username, $password, $db);
 
 try {
     // Create a PDO connection

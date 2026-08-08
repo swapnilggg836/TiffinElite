@@ -1,0 +1,7 @@
+# OS / Editor temporary files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.vscode/
+.idea/
+*.log

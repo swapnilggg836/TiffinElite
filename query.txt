@@ -1,0 +1,89 @@
+-- Create the database
+CREATE DATABASE yum;
+
+-- Switch to the created database
+USE yum;
+
+-- Create table for admin users
+CREATE TABLE admin_users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    user_type ENUM('hotel', 'mess', 'hostel') NOT NULL,  -- Type of user (hotel, mess, hostel)
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create table for mess details
+CREATE TABLE mess (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    mess_name VARCHAR(100) NOT NULL,
+    menu_name VARCHAR(100) NOT NULL,
+    menu_price DECIMAL(10, 2) NOT NULL,
+    description TEXT,
+    service_type ENUM('online', 'offline') NOT NULL,
+    opening_time TIME,
+    closing_time TIME,
+    address TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create table for hotel details
+CREATE TABLE hotel (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    hotel_name VARCHAR(100) NOT NULL,
+    room_type VARCHAR(50) NOT NULL,
+    room_price DECIMAL(10, 2) NOT NULL,
+    amenities TEXT,
+    service_type ENUM('online', 'offline') NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create table for hostel details
+CREATE TABLE hostel (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    hostel_name VARCHAR(100) NOT NULL,
+    room_type VARCHAR(50) NOT NULL,
+    room_price DECIMAL(10, 2) NOT NULL,
+    amenities TEXT,
+    service_type ENUM('online', 'offline') NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Example for inserting admin users
+INSERT INTO admin_users (username, email, password, user_type) 
+VALUES ('admin1', 'admin1@example.com', 'hashed_password', 'hotel'),
+       ('admin2', 'admin2@example.com', 'hashed_password', 'mess'),
+       ('admin3', 'admin3@example.com', 'hashed_password', 'hostel');
+
+-- Example for inserting mess details
+INSERT INTO mess (mess_name, menu_name, menu_price, description, service_type, opening_time, closing_time, address) 
+VALUES ('Mess A', 'Menu A', 100.00, 'Description of Menu A', 'online', '08:00:00', '22:00:00', '123 Mess Street');
+
+-- Example for inserting hotel details
+INSERT INTO hotel (hotel_name, room_type, room_price, amenities, service_type) 
+VALUES ('Hotel A', 'Single', 2000.00, 'Free WiFi, AC, Pool', 'offline');
+
+-- Example for inserting hostel details
+INSERT INTO hostel (hostel_name, room_type, room_price, amenities, service_type) 
+VALUES ('Hostel A', 'Dormitory', 500.00, 'Shared Bathroom, WiFi', 'online');
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE contact_messages (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    phone VARCHAR(15) NOT NULL,
+    admin_id INT NOT NULL,
+    message TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (admin_id) REFERENCES admin_users(id) ON DELETE CASCADE
+);

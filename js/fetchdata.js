@@ -3,19 +3,34 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.json())
         .then(data => {
             const cardContainer = document.getElementById("card-container");
+            if (cardContainer) cardContainer.classList.add("service-grid");
+
             data.forEach(mess => {
+                const photos = Array.isArray(mess.menu_photos) && mess.menu_photos.length > 0 ? mess.menu_photos : ['assets/img/default-food.png'];
+                const photoUrl = photos[0];
+                const photosString = photos.join(',');
+
                 const card = document.createElement("div");
-                card.className = "card";
+                card.className = "service-card";
                 card.innerHTML = `
-                    <img src="${mess.menu_photos[0]}" alt="${mess.menu_name}">
-                    <div class="card-content">
-                        <h3>${mess.mess_name}</h3>
-                        <p>Menu: ${mess.menu_name}</p>
-                        <p>${mess.description}</p>
-                        <p class="price">Price: ₹${mess.menu_price}</p>
-                        <p class="service-type">Service: ${mess.service_type}</p>
-                        <button class="buy-now-btn" data-id="${mess.id}" data-name="${mess.mess_name}" data-price="${mess.menu_price}" data-photos="${mess.menu_photos.join(',')}">Buy Now</button>
-                        <button class="add-to-cart-btn" data-id="${mess.id}" data-name="${mess.mess_name}" data-price="${mess.menu_price}">Add to Cart</button>
+                    <div class="card-img-wrapper">
+                        <img src="${photoUrl}" alt="${mess.menu_name}" onerror="this.src='assets/img/default-food.png';">
+                    </div>
+                    <div class="service-card-body">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                            <span class="badge">Mess / Tiffin</span>
+                            <span style="font-size: 0.8rem; color: var(--color-text-muted);">${mess.service_type || 'Online'}</span>
+                        </div>
+                        <h3 class="service-card-title">${mess.mess_name}</h3>
+                        <p style="font-weight: 600; font-size: 0.9rem; color: var(--color-primary-dark); margin-bottom: 6px;">Menu: ${mess.menu_name}</p>
+                        <p class="service-card-desc">${mess.description || 'Delicious home cooked fresh meals delivered daily.'}</p>
+                        <div class="service-card-meta">
+                            <span class="price">₹${mess.menu_price}</span>
+                        </div>
+                        <div class="card-actions">
+                            <button class="buy-now-btn btn-primary" data-id="${mess.id}" data-name="${mess.mess_name}" data-price="${mess.menu_price}" data-photos="${photosString}">Buy Now</button>
+                            <button class="add-to-cart-btn btn-secondary" data-id="${mess.id}" data-name="${mess.mess_name}" data-price="${mess.menu_price}">Add to Cart</button>
+                        </div>
                     </div>
                 `;
                 cardContainer.appendChild(card);

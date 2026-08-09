@@ -27,9 +27,12 @@ $username = $user['username'] ?? '';
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="assets\css\fetchdata.css">
-    <link rel="stylesheet" href="assets\css\fetchdatahotel.css">
-    <link rel="stylesheet" href="assets\css\fetchdatahostel.css">
+    <link rel="stylesheet" href="assets/css/tokens.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/fetchdata.css">
+    <link rel="stylesheet" href="assets/css/fetchdatahotel.css">
+    <link rel="stylesheet" href="assets/css/fetchdatahostel.css">
+    <script src="js/search.js" defer></script>
     <style>
         /* Reset and Base Styles */
         * {
@@ -379,10 +382,10 @@ header nav ul li a {
                 <img src="assets/img/logo.jpg" alt="YumDabba">
             </a>
         </div>
-        <div class="header-search">
-            <input type="text" placeholder="Search for Tiffin Services">
-            <button>Search</button>
-        </div>
+        <form action="search.php" method="GET" class="header-search-form">
+            <input type="text" name="q" placeholder="Search for Tiffin Services, Hotels, Hostels..." required>
+            <button type="submit">Search</button>
+        </form>
         <nav class="header-nav">
             <ul>
                 <li><a href="home.php">Home</a></li>
@@ -501,11 +504,11 @@ header nav ul li a {
     <!-- Footer -->
     <footer class="foot">
         <div class="footer-links">
-            <a href="setting.php">Settings</a>
-            <a href="setting.php">Privacy</a>
-            <a href="setting.php">Help & Support</a>
-            <a href="setting.php">Display & Accessibility</a>
-            <a href="setting.php">Supplier</a>
+            <a href="settings.php">Settings</a>
+            <a href="settings.php">Privacy</a>
+            <a href="settings.php">Help & Support</a>
+            <a href="settings.php">Display & Accessibility</a>
+            <a href="settings.php">Supplier</a>
         </div>
         <div class="social-icons">
             <a href="https://github.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>

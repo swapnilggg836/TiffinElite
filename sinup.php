@@ -51,6 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
+    <link rel="stylesheet" href="assets/css/tokens.css">
+    <link rel="stylesheet" href="assets/css/components.css">
     
     <style>
         body {
@@ -137,7 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
     <div class="signup-container">
         <h2>Sign Up</h2>
         <?php if (isset($message)): ?>
-            <div class="message <?php echo isset($success) ? 'success' : ''; ?>">
+            <div class="alert <?php echo isset($success) ? 'alert-success' : 'alert-error'; ?>">
                 <?php echo $message; ?>
             </div>
         <?php endif; ?>

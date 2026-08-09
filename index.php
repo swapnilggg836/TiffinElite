@@ -37,8 +37,10 @@ $conn->close();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tiffin Services</title>
 
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/ani.css">
-  <link rel="stylesheet" href="ani.css">
+  <script src="js/search.js" defer></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -960,10 +962,10 @@ $conn->close();
         <img src="assets\img\logo.jpg" alt="YumDabba">
       </a>
     </div>
-    <div class="header-search">
-      <input type="text" placeholder="Search for Tiffin Services">
-      <button>Search</button>
-    </div>
+    <form action="search.php" method="GET" class="header-search-form">
+      <input type="text" name="q" placeholder="Search for Tiffin Services, Hotels, Hostels..." required>
+      <button type="submit">Search</button>
+    </form>
     <nav class="header-nav">
       <ul>
         <li><a href="index.php">Home</a></li>

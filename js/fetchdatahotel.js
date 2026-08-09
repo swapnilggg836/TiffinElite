@@ -6,25 +6,36 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.json())
         .then(data => {
             const cardContainer = document.getElementById("hotel-card-container");
+            if (cardContainer) cardContainer.classList.add("service-grid");
 
             // Iterate over the hotel data and create card elements
             data.forEach(hotel => {
                 const card = document.createElement("div");
-                card.className = "hotel-card";
+                card.className = "service-card";
 
-                // Generate photos for the hotel menu
-                const photos = hotel.menu_photos.map(photo => `<img src="${photo}" alt="${hotel.menu_name}">`).join("");
+                const photoUrl = (Array.isArray(hotel.menu_photos) && hotel.menu_photos.length > 0) ? hotel.menu_photos[0] : 'assets/img/default-hotel.png';
+                const name = hotel.hotel_name || hotel.mess_name || 'Hotel Room';
 
                 // Set the card content
                 card.innerHTML = `
-                    ${photos}
-                    <div class="hotel-card-content">
-                        <h3>${hotel.mess_name}</h3>
-                        <p>Menu: ${hotel.menu_name}</p>
-                        <p>${hotel.description}</p>
-                        <p class="hotel-price">Price: ₹${hotel.menu_price}</p>
-                        <button class="buy-now-btn" data-menu-name="${hotel.menu_name}" data-price="${hotel.menu_price}">Buy Now</button>
-                        <button class="add-to-cart-btn" data-id="${hotel.id}" data-name="${hotel.menu_name}" data-price="${hotel.menu_price}">Add to Cart</button>
+                    <div class="card-img-wrapper">
+                        <img src="${photoUrl}" alt="${name}" onerror="this.src='assets/img/default-hotel.png';">
+                    </div>
+                    <div class="service-card-body">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                            <span class="badge">Hotel</span>
+                            <span style="font-size: 0.8rem; color: var(--color-text-muted);">${hotel.service_type || 'Available'}</span>
+                        </div>
+                        <h3 class="service-card-title">${name}</h3>
+                        <p style="font-weight: 600; font-size: 0.9rem; color: var(--color-primary-dark); margin-bottom: 6px;">Room / Menu: ${hotel.menu_name || hotel.room_type || 'Standard'}</p>
+                        <p class="service-card-desc">${hotel.description || hotel.amenities || 'Comfortable stay with modern amenities.'}</p>
+                        <div class="service-card-meta">
+                            <span class="price">₹${hotel.menu_price || hotel.room_price}</span>
+                        </div>
+                        <div class="card-actions">
+                            <button class="buy-now-btn btn-primary" data-menu-name="${hotel.menu_name || name}" data-price="${hotel.menu_price || hotel.room_price}">Buy Now</button>
+                            <button class="add-to-cart-btn btn-secondary" data-id="${hotel.id}" data-name="${hotel.menu_name || name}" data-price="${hotel.menu_price || hotel.room_price}">Add to Cart</button>
+                        </div>
                     </div>
                 `;
 

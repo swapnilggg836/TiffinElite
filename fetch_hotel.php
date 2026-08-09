@@ -1,27 +1,37 @@
 <?php
-// Database connection
+header('Content-Type: application/json');
 require_once 'connection.php';
 
-// Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    echo json_encode(["error" => "Database connection failed"]);
+    exit();
 }
 
-// Fetch data from the hotelmenus table
-$sql = "SELECT  mess_name,menu_name, menu_photos, menu_price, description FROM hotelmenus";
+$sql = "SELECT id, hotel_name AS mess_name, room_type AS menu_name, room_price AS menu_price, amenities AS description, service_type FROM hotel";
 $result = $conn->query($sql);
 
-if ($result->num_rows > 0) {
-    $messData = [];
-    while ($row = $result->fetch_assoc()) {
-        $row['menu_photos'] = json_decode($row['menu_photos'], true);
-        $messData[] = $row;
-    }
-    header('Content-Type: application/json');
-    echo json_encode($messData);
-} else {
-    echo json_encode([]);
+if (!$result) {
+    $sql = "SELECT id, mess_name, menu_name, menu_photos, menu_price, description FROM hotelmenus";
+    $result = $conn->query($sql);
 }
 
+$hotelData = [];
+if ($result && $result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $rawPhotos = $row['menu_photos'] ?? null;
+        $photos = [];
+        if (!empty($rawPhotos)) {
+            $decoded = json_decode($rawPhotos, true);
+            $photos = is_array($decoded) ? $decoded : [$rawPhotos];
+        }
+        if (empty($photos)) {
+            $photos = ['assets/img/default-hotel.png'];
+        }
+        $row['menu_photos'] = $photos;
+        $hotelData[] = $row;
+    }
+}
+
+echo json_encode($hotelData);
 $conn->close();
 ?>

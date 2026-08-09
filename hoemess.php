@@ -201,14 +201,11 @@
                 <li><a href="admin.php">admin</a></li>
                 <li>
                     <a href="#" class="drop-down">
-                        <img src="assets/img/pexels-chanwalrus-958545 (1).jpg" alt="User Photo" class="profile-image">
+                        <img src="assets/img/default-profile.png" alt="User Photo" class="profile-image">
                     </a>
                     <div class="profile-dropdown">
                         <a href="edit_profile.php">Edit Profile</a>
                         <a href="settings.php">Settings</a>
-                        <a href="privacy.php">Privacy</a>
-                        <a href="help.php">Help and Support</a>
-                        <a href="display_accessibility.php">Display & Accessibility</a>
                         <a href="logout.php">Logout</a>
                     </div>
                 </li>
@@ -257,11 +254,11 @@
 </div>
 <footer class="foot">
         <div class="footer-links">
-            <a href="setting.php">Settings</a>
-            <a href="setting.php">Privacy</a>
-            <a href="setting.php">Help & Support</a>
-            <a href="setting.php">Display & Accessibility</a>
-            <a href="setting.php">Supplier</a>
+            <a href="settings.php">Settings</a>
+            <a href="settings.php">Privacy</a>
+            <a href="settings.php">Help & Support</a>
+            <a href="settings.php">Display & Accessibility</a>
+            <a href="settings.php">Supplier</a>
         </div>
         <div class="social-icons" style="color:white;">
             <a href="https://github.com" target="_blank" style="color:white;" ><i class="fa-brands fa-instagram"></i></a>
@@ -272,6 +269,7 @@
         <h5 style="color:white;">@created by group 6</h5>
     </footer>
 
+    <script src="js/search.js"></script>
     <script src="js/fetchdata.js"></script>
 </body>
 </html>

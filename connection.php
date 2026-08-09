@@ -15,6 +15,10 @@ if (getenv('DB_HOST')) {
     @$conn->real_connect($host, $username, $password, $db, (int)$port);
 }
 
+if ($conn->connect_error) {
+    error_log("Database connection error: " . $conn->connect_error);
+}
+
 try {
     $pdo_options = [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
@@ -24,6 +28,6 @@ try {
     }
     $pdo = new PDO("mysql:host=$host;port=$port;dbname=$db", $username, $password, $pdo_options);
 } catch (PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
+    error_log("PDO Connection failed: " . $e->getMessage());
 }
 ?>

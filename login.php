@@ -1,3 +1,38 @@
+<?php
+session_start();
+include "connection.php";
+
+$message = "";
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
+    $username = htmlspecialchars($_POST['username']);
+    $password = $_POST['password'];
+
+    // Prepare statement to prevent SQL injection
+    $sql = "SELECT * FROM users WHERE username = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $hashedPassword = $row['password'];
+
+        // Verify password
+        if (password_verify($password, $hashedPassword)) {
+            $_SESSION['id'] = $row['id'];
+            $_SESSION['username'] = $row['username'];
+            header("Location: home.php");
+            exit();
+        } else {
+            $message = "Incorrect Password";
+        }
+    } else {
+        $message = "Incorrect Username or Password";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -112,6 +147,16 @@
         display: block;
     }
 
+    .message {
+        background-color: #f8d7da;
+        color: #721c24;
+        padding: 10px;
+        border: 1px solid #f5c6cb;
+        border-radius: 4px;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
 </style>
 <body class="bodyaa">
     <header>
@@ -132,44 +177,13 @@
             </ul>
         </nav>
     </header>
-      
-    <?php
-    session_start();
-    include "connection.php";
-
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
-        $username = htmlspecialchars($_POST['username']);
-        $password = $_POST['password'];
-
-        // Prepare statement to prevent SQL injection
-        $sql = "SELECT * FROM users WHERE username = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("s", $username);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            $hashedPassword = $row['password'];
-
-            // Verify password
-            if (password_verify($password, $hashedPassword)) {
-                $_SESSION['id'] = $row['id'];
-                $_SESSION['username'] = $row['username'];
-                header("Location: home.php");
-                exit();
-            } else {
-                echo "<div class='message'><p>Incorrect Password</p></div>";
-            }
-        } else {
-            echo "<div class='message'><p>Incorrect Username or Password</p></div>";
-        }
-    }
-    ?>
 
     <section class="contact1" id="contact">
         <div class="login-container">
             <h2>Login</h2>
+            <?php if (!empty($message)): ?>
+                <div class="message"><p><?php echo $message; ?></p></div>
+            <?php endif; ?>
             <form action="" method="POST" class="form1">
                 <div class="input-group">
                     <label for="username">Username:</label>

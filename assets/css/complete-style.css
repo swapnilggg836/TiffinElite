@@ -1,0 +1,547 @@
+/* ================================================================
+   TiffinElite — COMPLETE SITE STYLESHEET
+   Replaces: index.css, styles.css, fetchdata.css, fetchdatahotel.css,
+   fetchdatahostel.css, messs_admin.css, userprofileadmin.css, ani.css
+
+   Link ONLY this one file on every page:
+   <link rel="stylesheet" href="assets/css/complete-style.css">
+================================================================ */
+
+/* ---------- COLORS & TOKENS ---------- */
+:root {
+  --primary: #FF7A00;
+  --primary-dark: #E56A00;
+  --dark: #1F2937;
+  --dark-2: #111827;
+  --bg: #FAFAF7;
+  --white: #FFFFFF;
+  --text: #1F2937;
+  --text-light: #6B7280;
+  --border: #E5E7EB;
+  --success: #16A34A;
+  --success-bg: #DCFCE7;
+  --error: #DC2626;
+  --error-bg: #FEE2E2;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 2px 8px rgba(0,0,0,0.08);
+  --shadow-hover: 0 12px 24px rgba(0,0,0,0.15);
+}
+
+/* ---------- RESET ---------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: var(--bg);        /* NEVER put a photo here as background-image */
+  color: var(--text);
+  line-height: 1.6;
+}
+
+a { text-decoration: none; color: inherit; }
+button { font-family: inherit; cursor: pointer; }
+img { display: block; max-width: 100%; }
+
+/* ================================================================
+   1. HEADER / NAVBAR
+================================================================ */
+.header {
+  background: var(--dark-2);
+  color: var(--white);
+  min-height: 64px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header .logo img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+}
+
+.header nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header nav a {
+  color: var(--white);
+  font-weight: 500;
+  transition: color 0.25s ease;
+}
+
+.header nav a:hover,
+.header nav a.active {
+  color: var(--primary);
+}
+
+.header .avatar img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* ---------- Search box (inside header) ---------- */
+.search-box {
+  display: flex;
+  height: 42px;
+  width: 100%;
+  max-width: 480px;
+}
+
+.search-box input {
+  flex: 1;
+  height: 100%;
+  padding: 0 14px;
+  border: none;
+  border-radius: 6px 0 0 6px;
+  outline: none;
+  font-size: 0.9rem;
+}
+
+.search-box button {
+  height: 100%;
+  width: 90px;
+  background: var(--primary);
+  color: var(--white);
+  border: none;
+  border-radius: 0 6px 6px 0;
+  font-weight: 600;
+  transition: background 0.25s ease;
+}
+
+.search-box button:hover { background: var(--primary-dark); }
+
+/* ================================================================
+   2. HERO SECTION (home page banner)
+================================================================ */
+.hero {
+  position: relative;
+  height: 60vh;
+  min-height: 360px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /* image lives INSIDE this container, never on <body> */
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.55));
+}
+
+.hero-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--white);
+  padding: 0 20px;
+  animation: fadeInUp 0.6s ease both;
+}
+
+.hero-content h1 {
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  margin-bottom: 12px;
+}
+
+/* ================================================================
+   3. SECTION HEADINGS
+================================================================ */
+.section-title {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin: 40px 0 24px;
+  color: var(--text);
+}
+
+/* ================================================================
+   4. GRID + CARD COMPONENT (used for mess / hotel / hostel /
+      home category cards — ONE class for everything)
+================================================================ */
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 24px;
+  padding: 0 24px 48px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.service-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-shadow: var(--shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  animation: fadeInUp 0.5s ease both;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+
+.service-card img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  background: var(--border);   /* visible placeholder tone if image fails */
+}
+
+.service-card-body {
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.service-card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--text-light);
+  margin-bottom: 6px;
+}
+
+.status-dot { color: var(--success); }
+
+.service-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.service-card-sub {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+.service-card-desc {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex: 1;
+}
+
+.service-card-price {
+  margin-top: 10px;
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 1.05rem;
+}
+
+.service-card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+/* stagger fade-in per card */
+.service-grid .service-card:nth-child(1) { animation-delay: .05s; }
+.service-grid .service-card:nth-child(2) { animation-delay: .10s; }
+.service-grid .service-card:nth-child(3) { animation-delay: .15s; }
+.service-grid .service-card:nth-child(4) { animation-delay: .20s; }
+.service-grid .service-card:nth-child(5) { animation-delay: .25s; }
+.service-grid .service-card:nth-child(6) { animation-delay: .30s; }
+
+/* ================================================================
+   5. BUTTONS
+================================================================ */
+.btn {
+  display: inline-block;
+  height: 42px;
+  padding: 0 20px;
+  background: var(--primary);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background 0.25s ease, transform 0.15s ease;
+}
+
+.btn:hover { background: var(--primary-dark); transform: scale(1.03); }
+.btn:active { transform: scale(0.97); }
+
+.btn-dark { background: var(--dark); }
+.btn-dark:hover { background: var(--dark-2); }
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+.btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+
+/* ================================================================
+   6. FORMS (login, signup, settings, order/checkout form)
+================================================================ */
+.form-container {
+  max-width: 480px;
+  margin: 48px auto;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 32px;
+  animation: fadeInUp 0.4s ease both;
+}
+
+.form-container h2 {
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(255,122,0,0.15);
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+/* ================================================================
+   7. ALERTS (replace raw echoed PHP error/success text)
+================================================================ */
+.alert {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 16px;
+  font-size: 0.95rem;
+  animation: fadeInUp 0.3s ease both;
+}
+
+.alert-error { background: var(--error-bg); color: var(--error); border: 1px solid var(--error); }
+.alert-success { background: var(--success-bg); color: var(--success); border: 1px solid var(--success); }
+
+/* ================================================================
+   8. ADMIN DASHBOARD LAYOUT (shared by master/mess/hotel/hostel admin)
+================================================================ */
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.admin-sidebar {
+  width: 240px;
+  background: var(--dark-2);
+  color: var(--white);
+  padding: 24px 16px;
+  flex-shrink: 0;
+}
+
+.admin-sidebar a {
+  display: block;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 6px;
+  color: #D1D5DB;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.admin-sidebar a:hover,
+.admin-sidebar a.active {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.admin-main {
+  flex: 1;
+  padding: 32px;
+  background: var(--bg);
+}
+
+.admin-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.admin-stat-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  border-left: 4px solid var(--primary);
+}
+
+.admin-stat-card .stat-number {
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+.admin-stat-card .stat-label {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.admin-table th, .admin-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+
+.admin-table th {
+  background: var(--dark-2);
+  color: var(--white);
+  font-weight: 600;
+}
+
+.admin-table tr:hover td { background: #FFF7ED; }
+
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.badge-pending { background: #FEF3C7; color: #92400E; }
+.badge-approved,
+.badge-confirmed,
+.badge-delivered { background: var(--success-bg); color: var(--success); }
+.badge-rejected,
+.badge-cancelled { background: var(--error-bg); color: var(--error); }
+
+/* ================================================================
+   9. FOOTER
+================================================================ */
+.footer {
+  background: var(--dark-2);
+  color: var(--white);
+  padding: 40px 24px 24px;
+  text-align: center;
+  margin-top: 48px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.footer-links a {
+  color: #D1D5DB;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+.footer-links a:hover { color: var(--primary); }
+
+.footer-social {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  font-size: 1.2rem;
+}
+
+.footer p { color: #9CA3AF; font-size: 0.85rem; }
+
+/* ================================================================
+   10. ANIMATIONS
+================================================================ */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid var(--border);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin: 40px auto;
+}
+
+/* ================================================================
+   11. RESPONSIVE
+================================================================ */
+@media (max-width: 900px) {
+  .admin-layout { flex-direction: column; }
+  .admin-sidebar { width: 100%; display: flex; overflow-x: auto; gap: 8px; }
+  .admin-sidebar a { white-space: nowrap; margin-bottom: 0; }
+}
+
+@media (max-width: 600px) {
+  .service-grid { grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 12px 32px; }
+  .header { flex-wrap: wrap; padding: 12px; min-height: auto; }
+  .search-box { order: 3; max-width: 100%; margin-top: 10px; }
+  .hero { height: 40vh; }
+  .form-container { margin: 24px 16px; padding: 24px; }
+}

@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'connection.php'; 
 
 if (!$conn) {
@@ -11,7 +12,7 @@ if (!$data) {
 }
 
 $messName = $data['messName'] ?? '';
-$userId = 1; // Replace with actual logged-in user ID
+$userId = $_SESSION['id'] ?? 1;
 $name = $data['name'] ?? '';
 $address = $data['address'] ?? '';
 $paymentMethod = $data['paymentMethod'] ?? '';

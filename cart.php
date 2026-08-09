@@ -9,7 +9,7 @@ if (!isset($_SESSION['id'])) {
 
 // Fetch user data
 $userId = $_SESSION['id'];
-$sql = "SELECT username, profile_photo FROM users WHERE id = ?";
+$sql = "SELECT * FROM users WHERE id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $userId);
 $stmt->execute();
@@ -22,7 +22,9 @@ $profilePhoto = $user['profile_photo'] ?? 'assets/img/default-profile.png';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Display with Delete Option</title>
+    <title>Shopping Cart - TiffinElite</title>
+    <link rel="stylesheet" href="assets/css/tokens.css">
+    <link rel="stylesheet" href="assets/css/components.css">
     <style>
         body {
             font-family: Arial, sans-serif;

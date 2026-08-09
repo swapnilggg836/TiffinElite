@@ -264,11 +264,11 @@
 </div>
     <footer class="foot">
         <div class="footer-links">
-            <a href="setting.php">Settings</a>
-            <a href="setting.php">Privacy</a>
-            <a href="setting.php">Help & Support</a>
-            <a href="setting.php">Display & Accessibility</a>
-            <a href="setting.php">Supplier</a>
+            <a href="settings.php">Settings</a>
+            <a href="settings.php">Privacy</a>
+            <a href="settings.php">Help & Support</a>
+            <a href="settings.php">Display & Accessibility</a>
+            <a href="settings.php">Supplier</a>
         </div>
         <div class="social-icons" style="color:white;">
             <a href="https://github.com" target="_blank" style="color:white;" ><i class="fa-brands fa-instagram"></i></a>

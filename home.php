@@ -9,13 +9,14 @@ if (!isset($_SESSION['id'])) {
 
 // Fetch user data
 $userId = $_SESSION['id'];
-$sql = "SELECT username, profile_photo FROM users WHERE id = ?";
+$sql = "SELECT * FROM users WHERE id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $userId);
 $stmt->execute();
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 $profilePhoto = $user['profile_photo'] ?? 'assets/img/default-profile.png';
+$username = $user['username'] ?? '';
 ?>
 <!DOCTYPE html>
 <html lang="en">

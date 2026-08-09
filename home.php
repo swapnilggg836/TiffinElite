@@ -421,19 +421,42 @@ header nav ul li a {
     </div>
 
     <!-- Section: Hotels, Mess, Hostel -->
-    <div class="section">
-        <a href="hotelm.php">
-            <img src="mess/hot.jpg" alt="Hotels/Mess">
-            <h6>Hotels / Mess</h6>
-        </a>
-        <a href="hoemess.php">
-            <img src="mess/kit.jpg" alt="Home Mess">
-            <h6>Home Mess</h6>
-        </a>
-        <a href="restaurant.php">
-            <img src="mess/res.jpg" alt="Restaurant / PG / Hostels">
-            <h6>Restaurant / PG / Hostels</h6>
-        </a>
+    <div class="service-grid" style="max-width: 1100px; margin: 30px auto; padding: 0 20px;">
+        <div class="service-card">
+            <div class="card-img-wrapper">
+                <img src="mess/hot.jpg" alt="Hotels / Stays" onerror="this.src='assets/img/default-hotel.png';">
+            </div>
+            <div class="service-card-body">
+                <div style="margin-bottom: 8px;"><span class="badge">Hotels</span></div>
+                <h3 class="service-card-title">Hotels & Stays</h3>
+                <p class="service-card-desc">Indulge in comfortable hotel stays with top-rated amenities.</p>
+                <a href="hotelm.php" class="btn btn-primary" style="margin-top: auto;">Browse Hotels</a>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <div class="card-img-wrapper">
+                <img src="mess/kit.jpg" alt="Home Mess" onerror="this.src='assets/img/default-food.png';">
+            </div>
+            <div class="service-card-body">
+                <div style="margin-bottom: 8px;"><span class="badge">Mess / Tiffin</span></div>
+                <h3 class="service-card-title">Home Mess Services</h3>
+                <p class="service-card-desc">Fresh, hygienic, home-cooked daily meals delivered straight to you.</p>
+                <a href="hoemess.php" class="btn btn-primary" style="margin-top: auto;">Browse Tiffins</a>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <div class="card-img-wrapper">
+                <img src="mess/res.jpg" alt="Restaurant & Hostels" onerror="this.src='assets/img/default-hostel.png';">
+            </div>
+            <div class="service-card-body">
+                <div style="margin-bottom: 8px;"><span class="badge">Hostel / PG</span></div>
+                <h3 class="service-card-title">Hostels & Restaurants</h3>
+                <p class="service-card-desc">Find budget-friendly PG stays, hostels, and dining spots nearby.</p>
+                <a href="restaurant.php" class="btn btn-primary" style="margin-top: auto;">Browse Hostels</a>
+            </div>
+        </div>
     </div>
     <hr>
 

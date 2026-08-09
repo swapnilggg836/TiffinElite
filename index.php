@@ -1147,37 +1147,66 @@ $conn->close();
         <p>Enjoy a week's worth of nutritious meals with our weekly plan.</p>
        
       </div>
-      <div class="car-box">
-        <img src="hotel\z.jpg" alt="Custom Meal Plan">
-        <h3>Custom Meal Plan</h3>
-        <p>Get a personalized meal plan based on your preferences.</p>
-       
-      </div>
-      <div class="car-box">
-        <img src="hotel\p.jpg" alt="Daily Tiffin Service">
-        <h3>Monthly Tiffin Service</h3>
-        <p>Fresh and healthy tiffin delivered to your doorstep every day.</p>
-       
-      </div>
-      <div class="car-box">
-        <img src="hotel\t2.jpg" alt="Weekly Tiffin Plan">
-        <h3>Fast food </h3>
-        <p>Fresh, Fast, and Flavorful  Every Bite!</p>
-        
-      </div>
-      <div class="car-box">
-        <img src="hotel\t3.jpg" alt="Weekly Tiffin Plan">
-        <h3>hotels and Restaurant </h3>
-        <p>Indulge in Unmatched Comfort and Service!</p>
-        
-      </div>
-      <div class="car-box">
-        <img src="hotel\t4.jpg" alt="Weekly Tiffin Plan">
-        <h3>hostels  </h3>
-        <p>Explore More, Spend Less Stay Smart, Stay with Us!</p>
-        
+    <div class="service-grid" style="max-width: 1200px; margin: 30px auto; padding: 0 20px;">
+      <div class="service-card">
+        <div class="card-img-wrapper">
+          <img src="hotel/z.jpg" alt="Custom Meal Plan" onerror="this.src='assets/img/default-food.png';">
+        </div>
+        <div class="service-card-body">
+          <div style="margin-bottom: 8px;"><span class="badge">Mess / Tiffin</span></div>
+          <h3 class="service-card-title">Custom Meal Plan</h3>
+          <p class="service-card-desc">Get a personalized meal plan based on your preferences.</p>
+          <a href="hoemess.php" class="btn btn-primary" style="margin-top: auto;">Explore Mess</a>
+        </div>
       </div>
 
+      <div class="service-card">
+        <div class="card-img-wrapper">
+          <img src="hotel/p.jpg" alt="Daily Tiffin Service" onerror="this.src='assets/img/default-food.png';">
+        </div>
+        <div class="service-card-body">
+          <div style="margin-bottom: 8px;"><span class="badge">Tiffin</span></div>
+          <h3 class="service-card-title">Monthly Tiffin Service</h3>
+          <p class="service-card-desc">Fresh and healthy tiffin delivered to your doorstep every day.</p>
+          <a href="hoemess.php" class="btn btn-primary" style="margin-top: auto;">Explore Tiffin</a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="card-img-wrapper">
+          <img src="hotel/t2.jpg" alt="Fast Food" onerror="this.src='assets/img/default-food.png';">
+        </div>
+        <div class="service-card-body">
+          <div style="margin-bottom: 8px;"><span class="badge">Restaurant</span></div>
+          <h3 class="service-card-title">Fast Food & Restaurant</h3>
+          <p class="service-card-desc">Fresh, Fast, and Flavorful - Satisfaction in Every Bite!</p>
+          <a href="restaurant.php" class="btn btn-primary" style="margin-top: auto;">Explore Food</a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="card-img-wrapper">
+          <img src="hotel/t3.jpg" alt="Hotels" onerror="this.src='assets/img/default-hotel.png';">
+        </div>
+        <div class="service-card-body">
+          <div style="margin-bottom: 8px;"><span class="badge">Hotel</span></div>
+          <h3 class="service-card-title">Hotels & Stays</h3>
+          <p class="service-card-desc">Indulge in Unmatched Comfort, Luxury and Premium Service!</p>
+          <a href="hotelm.php" class="btn btn-primary" style="margin-top: auto;">Explore Hotels</a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="card-img-wrapper">
+          <img src="hotel/t4.jpg" alt="Hostels" onerror="this.src='assets/img/default-hostel.png';">
+        </div>
+        <div class="service-card-body">
+          <div style="margin-bottom: 8px;"><span class="badge">Hostel</span></div>
+          <h3 class="service-card-title">Hostels & PG Stays</h3>
+          <p class="service-card-desc">Explore More, Spend Less - Stay Smart, Stay with Us!</p>
+          <a href="nashik.php" class="btn btn-primary" style="margin-top: auto;">Explore Hostels</a>
+        </div>
+      </div>
     </div>
 
 
